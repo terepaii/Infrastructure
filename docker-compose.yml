@@ -14,15 +14,6 @@ services:
         - backend
         - loadtest
 
-    leaderboardapi:
-      build: https://github.com/terepaii/LeaderboardService.git#:Service/Dockerfile
-      ports:
-        - 8080:8080 
-        - 4433:4433
-      networks: 
-        - logging
-        - backend
-
     mongo:
       image: mongo
       restart: always
@@ -64,10 +55,9 @@ services:
       networks: 
         - backend
 networks: 
-  logging:
-    external: 
-      name: logging
   loadtest:
     external:
       name: loadtest
-  backend: {}
+  backend:
+    external: 
+      name: backend
